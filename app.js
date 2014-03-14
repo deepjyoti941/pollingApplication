@@ -28,7 +28,15 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//Main page route
 app.get('/', routes.index);
+
+// MongoDB API Routes
+app.get('/polls/polls', routes.list);
+app.get('/polls/:id', routes.poll);
+app.post('/polls', routes.create);
+
+
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
